@@ -1,0 +1,54 @@
+{% extends 'base.html.twig'%}
+{% block title 'Gerer les articles'%}
+{% block body %}
+<div class="container">
+    <h3>Gerer les articles</h3>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.title }}</td>
+                    <td>
+                        <a href="{{path('admin.article.edit', {id: article.id}) }}" class="btn btn-secondary">Editer</a>
+                        <form method="post"action="{{  path('admin.article.delete',{id: article.id })}}" 
+                        style="display: inline-block ;" onsubmit="return confirm('Etes-vous vraiment sur?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete'~article.id)}}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    <div class="text-right">
+        <a href="{{ path('admin.article.new')}}" class="btn btn-primary">Ajouter un article </a>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="paginator">
+                    {{ knp_pagination_render(articles)}}
+                </div> 
+            </div>
+            <div class="col-4"></div>
+        </div>
+        
+    </div>
+     
+</div>
+    
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block title %}Voir un article {% endblock %}
+{% block body %}
+	<div class="container">
+		<article>
+			<h3 class="article_title">{{article.title}}</h3>
+			<div class="metadata">Ecrit le{{ article.createdAt | date ('d/m/Y') }} a 
+				{{ article.createdAt | date('H:i')}} dans la categorie {{ article.category.title }}
+			</div>	
+			<div class="content">
+				<img src="{{ asset('uploads/' ~ article.image) }}" alt="">
+
+				<p>{{article.content | raw }}</p>
+			</div>	
+		</article>
+	</div>
+		<hr>
+		<div class="container">
+			<div class="row">
+				<div class="form-group"> 
+					<section id="commentaires">
+						<h5>{{ article.comments | length }} Commentaires:</h5>
+						{% for comment in article.comments %}
+							<div class="container">
+								<div class="comment">
+									<div class="row">
+										<div class="col-3">
+											{{ comment.author }} (<small> {{ comment.createdAt | date('d/m/Y a H:i')}}</small>)
+										</div>
+										<div class="col">
+											{{ comment.content | raw }} 
+										</div>
+									</div>
+								</div>
+							</div>
+	
+						{% endfor %}
+						<div class="container">
+							{% if app.user %}
+								{{ form_start(commentForm) }}
+								{{form_row(commentForm.author, {'attr': {'placeholder': " votre nom: "}})}}
+								{{form_row(commentForm.content, {'attr': {'placeholder': " votre commentaire: "}})}}
+	
+								<button type="submit" class="btn btn-success">Commenter</button>
+								{{form_end(commentForm)}}
+							{% else %}
+								<h4>vous ne pouvez pas commenter si vous n'etes pas connecte<h4>
+								<a href="{{path('login')}}" class="btn btn-primary">Connexion</a>
+							{% endif %}
+						</div>
+					</section>
+				</div> 
+			</div>
+		</div>
+		 
+{% endblock %} 

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+	<section class="articles">
+		{% for article in articles %}
+			<div class="container">
+				<div class="col-lg-">
+					<article class="article">
+						<a href="#" class="article-img"><img src="{{ asset('uploads/' ~ article.image) }}" alt=""></a> 
+						<div class="article-date">Ecrit le {{ article.createdAt | date ('d/m/Y') }} a {{ article.createdAt | date('H:i')}} dans la categorie {{ article.category.title }}
+						</div>
+						<h3 class="article-title">{{ article.title }}</h3>
+							<div class="content">
+								<p>{{ article. content | raw }}</p>
+								<a href="{{path('article.show', {'id': article.id})}}" class="btn btn-primary">Lire la suite</a>
+							</div>
+					</article>
+				</div>
+			</div>
+		{% endfor %}
+	<section>
+		
+	<!-- <div class="paginator">
+       {#{{ knp_pagination_render(articles) }}#} 
+    </div>   -->
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccountController!{% endblock %}
+{% block body %}
+    <div class="container mt-4 mb-4">
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Inscrivez-vous</h1>
+                </div>
+                <div class="card-body">
+                        {{ form_start(form) }}
+                                <div class="row">
+                                    <div>{{ form_row(form.username) }}</div>
+                                </div>
+                                <div class="row">
+                                    <div>{{ form_row(form.password) }}</div>
+                                </div>
+                                <div class="row">
+                                    <div>{{ form_row(form.email) }}</div>
+                                </div>
+                                    {{ form_widget(form) }}
+                                <button class="btn btn-primary">{{ button|default('Inscription')}}</button>
+                        {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

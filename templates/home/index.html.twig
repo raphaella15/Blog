@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue{% endblock %}
+{% block body  %}
+<div class="slider-active">
+    <div class="single-slider slider-height" data-background="assets/img/hero/h1_hero.jpg">
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-between">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-none d-md-block">
+                    <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
+                        <img src="assets/img/hero/hero_man.png" alt="">
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-8">
+                    <div class="hero__caption">
+                        <h1 data-animation="fadeInRight" data-delay=".6s">Bienvenue<br>les amis</h1>
+                        <p data-animation="fadeInRight" data-delay=".8s">Les meilleurs articles de l'annee 2020</p>
+                        <!-- Hero-btn -->
+                        <div class="hero__btn" data-animation="fadeInRight" data-delay="1s">
+                            <a href="{{path('articles')}}" class="btn hero-btn">Voir nos articles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

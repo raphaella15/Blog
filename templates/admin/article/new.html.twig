@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <section class="container mt-4">
+        <h3>Ajouter un nouvel article </h3>
+        {{ include ('admin/article/_form.html.twig', {button: 'Ajouter'}) }}
+    </section>
+{% endblock %}
